@@ -1,0 +1,26 @@
+.admin
+  =link_to "New Work", "works/new"
+  =link_to "New Type", "types/new"
+  =link_to "New Domain", "domains/new"
+  =link_to "New Time Period", "time_periods/new"
+  %h1 Works
+  %table
+    %tbody
+      %tr
+        %th Name
+        %th Description
+        %th Image
+        %th Type
+        %th Domain
+        %th Time Period
+        %th
+      -@works.each do |work|
+        %tr
+          %td= work.name
+          %td= work.description
+          %td= image_tag work.thumbnail.url(:small)
+          %td= work.type.name
+          %td= work.domain.name
+          %td= work.time_period.name
+          %td= link_to 'Edit', "/works/#{work.id}/edit"
+          

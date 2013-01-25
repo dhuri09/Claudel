@@ -1,0 +1,15 @@
+.admin
+  .back=link_to "Back to Admin Panel", "/admin"
+  =form_for @work do |f|
+    %p Name:
+    %p=f.text_field :name
+    %p Description
+    %p=f.text_area :description
+    %p Type:
+    %p=f.select :type_id, options_from_collection_for_select(@types, :id, :name), {:include_blank => true}
+    %p Domain:
+    %p=f.select :domain_id, options_from_collection_for_select(@domains, :id, :name), {:include_blank => true}
+    %p Time Period:
+    %p=f.select :time_period_id, options_from_collection_for_select(@time_periods, :id, :name), {:include_blank => true}
+    %p=f.submit
+  

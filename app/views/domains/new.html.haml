@@ -1,0 +1,6 @@
+.admin
+  .back=link_to "Back to Admin Panel", "/admin"
+  =form_for @domain do |f|
+    %p Name:
+    %p=f.text_field :name
+    %p=f.submit

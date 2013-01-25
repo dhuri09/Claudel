@@ -1,0 +1,27 @@
+.admin
+  =link_to "All Works", "/admin"
+  %h1= @work.name
+  =form_for @work do |f|
+    %table
+      %tbody
+        %tr
+          %td Name
+          %td= @work.name
+        %tr
+          %td Description
+          %td= @work.description
+        %tr
+          %td Image
+          %td
+            = image_tag @work.thumbnail.url(:small)
+            = f.file_field :thumbnail
+        %tr
+          %td Type
+          %td= @work.type.name
+        %tr
+          %td Domain
+          %td= @work.domain.name
+        %tr
+          %td Time Period
+          %td= @work.time_period.name
+    =f.submit    

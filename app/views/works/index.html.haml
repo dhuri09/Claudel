@@ -1,0 +1,16 @@
+/ #container
+/ :javascript
+/   $(function() {
+/     works = new Claudel.Collections.Works();
+/     works.url = '/works';
+/     works.fetch({
+/       success: function(works) {
+/         window.router = new Claudel.Routers.WorksRouter({works: works});
+/         Backbone.history.start();
+/       }
+/     });
+/   });
+#container
+  #header
+    %img(src='/assets/home.jpg');
+  #place-holder

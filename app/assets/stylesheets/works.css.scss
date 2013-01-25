@@ -1,0 +1,47 @@
+// Place all the styles related to the Works controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@font-face { font-family: AGLight; src: url('/assets/AkzidenzGrotesk-Light.otf'); } 
+@font-face { font-family: AGMedium; src: url('/assets/AkzidenzGrotesk-Medium.otf'); }
+@font-face { font-family: AGRegular; src: url('/assets/AkzidenzGrotesk-Regular.otf'); }
+@font-face { font-family: AGBold; src: url('/assets/AkzidenzGrotesk-Bold.otf'); } 
+@font-face { font-family: AGItalic; src: url('/assets/AkzidenzGrotesk-Italic.otf'); }
+
+body {
+  margin: 0px;
+  font-family: AGRegular;
+  .header {
+    width: 1000px;
+    height: 60px;
+    margin: auto;
+    border-bottom: 1px solid #eee;
+  }
+  #container {
+    width: 1000px;
+    margin: auto;
+    .menu {
+      text-align: center;
+      a {
+        line-height: 40px;
+        margin: 10px 20px;
+        font-family: AGBold;
+        color: #777;
+        text-decoration: none;
+        -webkit-transition: 0.2s;
+        &:hover {
+          color: black;
+        }
+        &.active {
+          color: black;
+          border-bottom: 3px solid black;
+        }
+      }
+    }
+  }
+  #header {
+    border-bottom: 1px solid #dadada;
+    img {
+      width: 1000px;
+    }
+  }
+}
