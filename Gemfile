@@ -12,6 +12,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'bcrypt-ruby', :require => 'bcrypt'
 
 #Backbone.js & Underscore.js
 gem 'rails-backbone'
