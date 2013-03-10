@@ -89,13 +89,28 @@ class Claudel.Views.Index extends Backbone.View
     for domain in collection.models
       set = works[domain.id]
       width = $("#works").width() - 50
-      top = $('.domain-name[data-id=' + domain.id + ']').offset().top - 105
-      top = top + ($('.domain-name[data-id=' + domain.id + ']').height()/2)
-      for work, i in set
-        div = $('.work[data-id="' + work.id + '"]')
-        coordx = 10 + i*60 + "px"
-        coordy = top + "px"
-        div.animate({"top": "#{coordy}", "left": "#{coordx}" }, 500)
+      max = set.length*60 + 20
+      if max/width > 1
+        top = $('.domain-name[data-id=' + domain.id + ']').offset().top - 135
+        top = top + ($('.domain-name[data-id=' + domain.id + ']').height()/2)
+        for work, i in set
+          div = $('.work[data-id="' + work.id + '"]')
+          half = Math.floor(set.length/2)
+          if i > half
+            coordx = 10 + i*60 - (half+1)*60 + "px"
+            coordy = top + 60 + "px"
+          else
+            coordx = 10 + i*60 + "px"
+            coordy = top + "px"
+          div.animate({"top": "#{coordy}", "left": "#{coordx}" }, 500)
+      else
+        top = $('.domain-name[data-id=' + domain.id + ']').offset().top - 105
+        top = top + ($('.domain-name[data-id=' + domain.id + ']').height()/2)
+        for work, i in set
+          div = $('.work[data-id="' + work.id + '"]')
+          coordx = 10 + i*60 + "px"
+          coordy = top + "px"
+          div.animate({"top": "#{coordy}", "left": "#{coordx}" }, 500)
   
   #sort by type
   renderType: (works, collection) ->
@@ -106,13 +121,28 @@ class Claudel.Views.Index extends Backbone.View
     for type in collection.models
       set = works[type.id]
       width = $("#works").width() - 50
-      top = $('.type-name[data-id=' + type.id + ']').offset().top - 105
-      top = top + ($('.type-name[data-id=' + type.id + ']').height()/2)
-      for work, i in set
-        div = $('.work[data-id="' + work.id + '"]')
-        coordx = width - 10 - (i*60) + "px"
-        coordy = top + "px"
-        div.animate({"top": "#{coordy}", "left": "#{coordx}" }, 500)
+      max = set.length*60 + 20
+      if max/width > 1
+        top = $('.type-name[data-id=' + type.id + ']').offset().top - 135
+        top = top + ($('.type-name[data-id=' + type.id + ']').height()/2)
+        for work, i in set
+          div = $('.work[data-id="' + work.id + '"]')
+          half = Math.floor(set.length/2)
+          if i > half
+            coordx = width - 10 - (i*60) + (half+1)*60 + "px"
+            coordy = top + 60 + "px"
+          else
+            coordx = width - 10 - (i*60) + "px"
+            coordy = top + "px"
+          div.animate({"top": "#{coordy}", "left": "#{coordx}" }, 500)
+      else
+        top = $('.type-name[data-id=' + type.id + ']').offset().top - 105
+        top = top + ($('.type-name[data-id=' + type.id + ']').height()/2)
+        for work, i in set
+          div = $('.work[data-id="' + work.id + '"]')
+          coordx = width - 10 - (i*60) + "px"
+          coordy = top + "px"
+          div.animate({"top": "#{coordy}", "left": "#{coordx}" }, 500)
   
   #sort random, also default sort
   renderRandom: (works) ->
@@ -120,6 +150,8 @@ class Claudel.Views.Index extends Backbone.View
     height = $("#works").height() - 50
     for work in works.models
       div = $('.work[data-id="' + work.id + '"]')
-      coordx = Math.floor(Math.random()*width) + "px"
-      coordy = Math.floor(Math.random()*height) + "px"
+      x = Math.floor(Math.random()*(width/50))
+      y = Math.floor(Math.random()*(height/50))
+      coordx = x*50 + 7 + "px"
+      coordy = y*50 + 7 + "px"
       div.animate({"top": "#{coordy}", "left": "#{coordx}" }, 500)

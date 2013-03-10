@@ -10,6 +10,7 @@ class Claudel.Views.Show extends Backbone.View
     @model = work
     @sort = sort
     @render()
+    $('body').keyup(@escape)
   
   showPopover: ->
     $("#popover").removeClass "hidden"
@@ -37,3 +38,7 @@ class Claudel.Views.Show extends Backbone.View
   
   close: ->
     window.location = "#" + @sort
+  
+  escape: (event) =>
+    if event.keyCode == 27
+      window.location = "#" + @sort
