@@ -24,7 +24,6 @@ class DomainsController < ApplicationController
   def create
     @domain = Domain.new(params[:domain])
     if @domain.save
-      render json: @domain
       redirect_to "/admin"
     end
   end
