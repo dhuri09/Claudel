@@ -14,9 +14,12 @@ class Claudel.Views.Index extends Backbone.View
     $("#container").html(@indexTemplate())
     @works = works
     @addAll("#works", @works.models)
+    # Re-sort after resize
+    layout = _.debounce(@sort, 200);
+    $(window).resize(layout);
   
   # Resets links on sides of #works
-  resetLinks: (param) ->
+  resetLinks: (param) =>
     $("#time").html('<a href="#time" data-type="time">Sort by Time</a>')
     $("#domain").html('<a href="#domain" data-type="domain">Sort by Domain</a>')
     $("#type").html('<a href="#type" data-type="type">Sort by Type</a>')
@@ -41,7 +44,7 @@ class Claudel.Views.Index extends Backbone.View
     html.append(view.render().el)
   
   #decide which parameter to search by and call it
-  sort: ->
+  sort: =>
     if @param == 'time'
       @renderTime(@works, @collection)
     else if @param == 'domain'
@@ -52,7 +55,7 @@ class Claudel.Views.Index extends Backbone.View
       @renderRandom(@works)
   
   #render, reset function   
-  render: (param, collection) ->
+  render: (param, collection) =>
     #Reset values
     @resetLinks(param)
     @param = param
@@ -91,14 +94,14 @@ class Claudel.Views.Index extends Backbone.View
       width = $("#works").width() - 50
       max = set.length*60 + 20
       if max/width > 1
-        top = $('.domain-name[data-id=' + domain.id + ']').offset().top - 135
+        top = $('.domain-name[data-id=' + domain.id + ']').offset().top - 130
         top = top + ($('.domain-name[data-id=' + domain.id + ']').height()/2)
         for work, i in set
           div = $('.work[data-id="' + work.id + '"]')
           half = Math.floor(set.length/2)
           if i > half
             coordx = 10 + i*60 - (half+1)*60 + "px"
-            coordy = top + 60 + "px"
+            coordy = top + 55 + "px"
           else
             coordx = 10 + i*60 + "px"
             coordy = top + "px"
@@ -130,7 +133,7 @@ class Claudel.Views.Index extends Backbone.View
           half = Math.floor(set.length/2)
           if i > half
             coordx = width - 10 - (i*60) + (half+1)*60 + "px"
-            coordy = top + 60 + "px"
+            coordy = top + 55 + "px"
           else
             coordx = width - 10 - (i*60) + "px"
             coordy = top + "px"

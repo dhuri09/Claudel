@@ -14,6 +14,7 @@ class TimePeriodsController < ApplicationController
   
   def index
     @time_periods = TimePeriod.all
+    @time_periods = @time_periods.sort_by { |time| time.season }
     render json: @time_periods
   end
   
