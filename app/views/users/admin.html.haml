@@ -7,20 +7,22 @@
   %table
     %tbody
       %tr
+        %th
         %th Name
         %th Description
-        %th Image
         %th Type
         %th Domain
         %th Time Period
+        %th Images
         %th
       -@works.each do |work|
         %tr
+          %td= image_tag work.thumbnail.url(:small)
           %td= work.name
           %td= work.description
-          %td= image_tag work.thumbnail.url(:small)
           %td= work.type.name
           %td= work.domain.name
           %td= work.time_period.name
+          %td= link_to "#{work.images.count} Images", "/works/#{work.id}/edit/images"
           %td= link_to 'Edit', "/works/#{work.id}/edit"
           

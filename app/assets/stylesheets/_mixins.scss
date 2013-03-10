@@ -1,0 +1,12 @@
+@mixin transition($x) {  transition: #{$x};
+  -moz-transition: #{$x};
+  -webkit-transition: #{$x};
+  -o-transition: #{$x};
+}
+
+@mixin calc($attribute, $x, $y) {
+  #{$attribute}: -moz-calc(#{$x} - #{$y});
+  #{$attribute}: -webkit-calc(#{$x} - #{$y});
+  #{$attribute}: -o-calc(#{$x} - #{$y});
+  #{$attribute}: calc(#{$x} - #{$y});
+}

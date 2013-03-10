@@ -28,17 +28,33 @@ class WorksController < ApplicationController
   
   def edit
     @work = Work.find(params[:id])
+    @types = Type.all
+    @domains = Domain.all
+    @time_periods = TimePeriod.all
   end
   
   def update
-    @work = Work.find(params[:work])
+    @work = Work.find(params[:id])
     respond_to do |format|
       if @work.update_attributes(params[:work])
         format.html { redirect_to "/admin" }
+        format.json { head :no_content }
       else
-        format.html { render action: 'update' }
+        format.html { render action: "edit" }
+        format.json { render json: @work.errors, status: :unprocessable_entity }
       end
     end
   end
-      
+  
+  def images
+    @work = Work.find(params[:id])
+    images = @work.images
+    render json: images.as_json
+  end
+  
+  def edit_images
+    @work = Work.find(params[:id])
+    @image = Image.new
+  end
+  
 end

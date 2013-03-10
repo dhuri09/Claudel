@@ -6,10 +6,10 @@
       %tbody
         %tr
           %td Name
-          %td= @work.name
+          %td= f.text_field :name
         %tr
           %td Description
-          %td= @work.description
+          %td= f.text_area :description
         %tr
           %td Image
           %td
@@ -17,11 +17,11 @@
             = f.file_field :thumbnail
         %tr
           %td Type
-          %td= @work.type.name
+          %td= f.select :type_id, options_from_collection_for_select(@types, :id, :name, @work.type.id), {:include_blank => true}
         %tr
           %td Domain
-          %td= @work.domain.name
+          %td= f.select :domain_id, options_from_collection_for_select(@domains, :id, :name, @work.domain.id), {:include_blank => true}
         %tr
           %td Time Period
-          %td= @work.time_period.name
+          %td= f.select :time_period_id, options_from_collection_for_select(@time_periods, :id, :name, @work.time_period.id), {:include_blank => true}
     =f.submit    

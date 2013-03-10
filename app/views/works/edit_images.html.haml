@@ -1,0 +1,12 @@
+.admin
+  =link_to "All Works", "/admin"
+  %h1= @work.name
+  =form_for @image do |f|
+    = f.hidden_field :work_id, :value => @work.id
+    = f.file_field :image
+    = f.submit "Add an Image"
+  %table
+    -@work.images.each do |image|
+      %tr
+        %td= image_tag image.image.url(:large)
+        %td= link_to "Remove Image", image, :method => :delete, :confirm => "Are you sure you want to remove this image?"

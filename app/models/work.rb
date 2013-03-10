@@ -26,9 +26,13 @@ class Work < ActiveRecord::Base
     "id" => read_attribute(:id),
     "name" => read_attribute(:name),
     "description" => read_attribute(:description),
+    "thumbnail" => thumbnail.url(:small),
     "type" => type,
     "domain" => domain,
-    "time_period" => time_period
+    "time_period" => time_period,
+    "time_period_id" => read_attribute(:time_period_id),
+    "type_id" => read_attribute(:type_id),
+    "domain_id" => read_attribute(:domain_id)
   }
   end
 

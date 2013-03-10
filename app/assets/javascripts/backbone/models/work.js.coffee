@@ -3,6 +3,14 @@ class Claudel.Models.Work extends Backbone.Model
 
   defaults:
     name: null
+  
+  fetchImages: ->
+    $.ajax
+      type: 'GET'
+      dataType: 'json'
+      url: '/works/' + @id + '/images'
+      success: (data) =>
+        @set images: data
 
 class Claudel.Collections.Works extends Backbone.Collection
   model: Claudel.Models.Work

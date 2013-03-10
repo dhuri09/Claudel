@@ -7,41 +7,234 @@
 @font-face { font-family: AGBold; src: url('/assets/AkzidenzGrotesk-Bold.otf'); } 
 @font-face { font-family: AGItalic; src: url('/assets/AkzidenzGrotesk-Italic.otf'); }
 
+@import "mixins";
+
+$work-margin: 0px;
+
 body {
   margin: 0px;
   font-family: AGRegular;
-  .header {
-    width: 1000px;
-    height: 60px;
-    margin: auto;
-    border-bottom: 1px solid #eee;
-  }
-  #container {
-    width: 1000px;
-    margin: auto;
-    .menu {
-      text-align: center;
-      a {
-        line-height: 40px;
-        margin: 10px 20px;
-        font-family: AGBold;
-        color: #777;
-        text-decoration: none;
-        -webkit-transition: 0.2s;
-        &:hover {
-          color: black;
-        }
-        &.active {
-          color: black;
-          border-bottom: 3px solid black;
-        }
+  background: #eee;
+  .menu {
+    text-align: center;
+    a {
+      line-height: 40px;
+      margin: 10px 20px;
+      font-family: AGBold;
+      color: #777;
+      text-decoration: none;
+      -webkit-transition: 0.2s;
+      &:hover {
+        color: black;
+      }
+      &.active {
+        color: black;
+        border-bottom: 3px solid black;
       }
     }
+  }
+  #container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
   #header {
     border-bottom: 1px solid #dadada;
     img {
       width: 1000px;
+    }
+  }
+}
+
+//Table
+.wrapper {
+  width: 100%;
+  height: 100%;
+  .header, .footer {
+    height: 80px;
+    text-align: center;
+  }
+  #random, #domain, #type, #time {
+    &:hover {
+      background: #ccc;
+    }
+    @include transition(background 0.2s);
+    a {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  #domain, #type {
+    width: 100px;
+  }
+  #domain {
+    text-align: right;
+  }
+  #type {
+    text-align: left;
+  }
+  #works {
+    width: 100%;
+    background: white;
+    height: 100%;
+    position: relative;
+  }
+}
+
+//Work styling
+.work {
+  position: absolute;
+  display: block;
+  height: 50px;
+  width: 50px;
+  background: black;
+  opacity: 0;
+  @include transition(opacity 0.3s);
+  @include calc(top, 50%, 25px);
+  @include calc(left, 50%, 25px);
+  img {
+    width: 50px;
+  }
+  &.visible {
+    opacity: 1;
+  }
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.float_break {
+  clear: both;
+}
+
+//Time
+#time-key {
+  width: 100%;
+}
+
+.time_period, .domain, .type {
+  border: 0px;
+  .time_period-name, .domain-name, .type-name {
+    margin: 0px;
+    padding: 0px;
+    vertical-align: middle;
+    border-right: 3px solid grey;
+    color: grey;
+    height: 74px;
+    padding-right: 10px;
+    @include transition(0.2s);
+    text-align: right;
+  }
+  .time_period-works, .domain-works, .type-works {
+    padding-left: 15px;
+  }
+}
+
+//Domain
+#domain-key {
+  height: 100%;
+}
+
+//Type
+#type-key {
+  height: 100%;
+}
+
+//Random
+.random {
+  img {
+    width: 60px;
+  }
+  position: absolute;
+  top: 50%;
+  left: 470px;
+  margin-top: -30px;
+  @include transition(0.5s);
+}
+
+//Popover
+#popover {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  &.hidden {
+    width: 0px;
+    height: 0px;
+    top: 0px;
+    left: 0px;
+    z-index: -100;
+  }
+  .cover {
+    background: black;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+#popover-work {
+  width: 90%;
+  max-width: 900px;
+  min-width: 300px;
+  margin: auto;
+  height: 80%;
+  z-index: 100;
+  position: relative;
+  border: 1px solid black;
+  top: 5%;
+  .work-nav {
+    height: 50px;
+    width: 50%;
+    background: black;
+    border-bottom: 1px solid black;
+    img {
+      height: 50px;
+    }
+    .close {
+      float: right;
+      line-height: 50px;
+      font-size: 20px;
+      padding: 0 20px;
+      color: white;
+      text-decoration: none;
+      @include transition(0.15s);
+      &:hover {
+        background: #222;
+      }
+    }
+  }
+  .work-container {
+    width: 50%;
+    @include calc(height, 100%, 50px);
+    background: white;
+    position: absolute;
+    top: 50px;
+  }
+  .work-images {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    overflow: scroll;
+    width: 50%;
+    height: 100%;
+    background: #222;
+    img {
+      width: 90%;
+      margin: 5px 5%;
+    }
+    .message {
+      margin-top: 45%;
+      text-align: center;
+      color: grey;
+      font-size: 20px;
     }
   }
 }

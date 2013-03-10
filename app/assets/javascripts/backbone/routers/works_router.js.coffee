@@ -3,32 +3,48 @@ class Claudel.Routers.WorksRouter extends Backbone.Router
   initialize: (options) ->
     @works = new Claudel.Collections.Works
     @works.add(options.works.models)
-    @view = new Claudel.Views.Index
+    @currentSort = 'random'
+    @view = new Claudel.Views.Index(@works)
       
   routes:
     "time" : "time"
     "type" : "type"
     "domain" : "domain"
     "random" : "random"
-    ".*" : "time"
+    "works/:id" : "work"
+    ".*" : "random"
   
+  hidePopover: ->
+    $("#popover").html('')
+    $("#popover").addClass "hidden"
+    
   time: ->
+    @hidePopover()
     timePeriods = new Claudel.Collections.TimePeriods
     timePeriods.fetch success: (timePeriods) =>
-      console.log timePeriods
-      @view.render('time', @works, timePeriods)
+      @currentSort = 'time'
+      @view.render(@currentSort, timePeriods)
   
   type: ->
+    @hidePopover()
     types = new Claudel.Collections.Types
     types.fetch success: (types) =>
-      console.log types
-      @view.render('type', @works, types)
+      @currentSort = 'type'
+      @view.render(@currentSort, types)
     
   domain: ->
+    @hidePopover()
     domains = new Claudel.Collections.Domains
     domains.fetch success: (domains) =>
-      console.log domains
-      @view.render('domain', @works, domains)
+      @currentSort = 'domain'
+      @view.render(@currentSort, domains)
   
   random: ->
-    @view.render('random', @works)
+    @hidePopover()
+    @currentSort = 'random'
+    @view.render(@currentSort)
+  
+  work: (id) ->
+    work = @works.get(id)
+    view = new Claudel.Views.Show(work, @currentSort)
+    #@view.render(@currentSort)
