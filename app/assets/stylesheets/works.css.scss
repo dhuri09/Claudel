@@ -239,7 +239,8 @@ body {
     width: 55%;
     img {
       height: 100%;
-      text-align: center;
+      display: block;
+      margin: auto;
       &.heighted {
         height: auto;
         width: 100%;
