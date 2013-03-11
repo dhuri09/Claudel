@@ -63,6 +63,7 @@ body {
       text-decoration: none;
       @include transition(0.2s);
       padding-bottom: 2px;
+      color: #333;
       &:hover, &.active {
         color: black;
         border-bottom: 2px solid black;
@@ -187,13 +188,13 @@ body {
   height: 80%;
   z-index: 100;
   position: relative;
-  border: 1px solid black;
   top: 5%;
   .work-container {
     width: 45%;
     height: 100%;
     background: white;
     position: absolute;
+    border: 1px solid black;
   }
   table {
     @include calc(width, 100%, 30px);
@@ -230,13 +231,19 @@ body {
     position: absolute;
     top: 0;
     left: 45%;
-    overflow: scroll;
-    width: 55%;
+    overflow: hidden;
     height: 100%;
     background: #222;
+    border: 1px solid black;
+    vertical-align: middle;
+    width: 55%;
     img {
-      width: 90%;
-      margin: 5px 5%;
+      height: 100%;
+      text-align: center;
+      &.heighted {
+        height: auto;
+        width: 100%;
+      }
     }
     .message {
       margin-top: 45%;
