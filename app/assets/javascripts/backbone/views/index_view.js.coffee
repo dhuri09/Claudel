@@ -20,10 +20,11 @@ class Claudel.Views.Index extends Backbone.View
   
   # Resets links on sides of #works
   resetLinks: (param) =>
-    $("#time").html('<a href="#time" data-type="time">Sort by Time</a>')
-    $("#domain").html('<a href="#domain" data-type="domain">Sort by Domain</a>')
-    $("#type").html('<a href="#type" data-type="type">Sort by Type</a>')
-    $("#random").html('<a href="#random" data-type="random">Random</a>')
+    $("#time").html('')
+    $("#domain").html('')
+    $("#type").html('')
+    $("#menu a").removeClass "active"
+    $("#menu a[data-type=#{param}]").addClass "active"
   
   #add works to div with data-id=id  
   addAll: (div, works, id) ->

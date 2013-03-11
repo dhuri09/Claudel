@@ -14,7 +14,7 @@ $work-margin: 0px;
 body {
   margin: 0px;
   font-family: AGRegular;
-  background: #eee;
+  background: white;
   .menu {
     text-align: center;
     a {
@@ -56,24 +56,23 @@ body {
     height: 80px;
     text-align: center;
   }
-  #random, #domain, #type, #time {
-    &:hover {
-      background: #ccc;
-    }
-    @include transition(background 0.2s);
+  #menu {
+    text-align: left;
     a {
-      display: block;
-      height: 100%;
-      width: 100%;
+      margin-left: 10px;
+      text-decoration: none;
+      @include transition(0.2s);
+      padding-bottom: 2px;
+      &:hover, &.active {
+        color: black;
+        border-bottom: 2px solid black;
+      }
     }
   }
   #domain, #type {
     width: 100px;
   }
-  #domain {
-    text-align: right;
-  }
-  #type {
+  #type, #domain {
     text-align: left;
   }
   #works {
@@ -190,40 +189,49 @@ body {
   position: relative;
   border: 1px solid black;
   top: 5%;
-  .work-nav {
-    height: 50px;
-    width: 50%;
-    background: black;
-    border-bottom: 1px solid black;
-    img {
-      height: 50px;
-    }
-    .close {
-      float: right;
-      line-height: 50px;
-      font-size: 20px;
-      padding: 0 20px;
-      color: white;
-      text-decoration: none;
-      @include transition(0.15s);
-      &:hover {
-        background: #222;
-      }
-    }
-  }
   .work-container {
-    width: 50%;
-    @include calc(height, 100%, 50px);
+    width: 45%;
+    height: 100%;
     background: white;
     position: absolute;
-    top: 50px;
+  }
+  table {
+    @include calc(width, 100%, 30px);
+    margin: 15px;
+  }
+  tr {
+    td {
+      vertical-align: top;
+    }
+    .left {
+      width: 30%;
+      padding-right: 5%;
+      padding-bottom: 20px;
+      img {
+        width: 100%;
+      }
+    }
+    .detail {
+      font-size: 13px;
+      line-height: 17px;
+    }
+    .description {
+      font-size: 13px;
+      line-height: 17px;
+    }
+    .name {
+      vertical-align: bottom;
+      font-size: 25px;
+      line-height: 25px;
+      padding-bottom: 20px;
+    }
   }
   .work-images {
     position: absolute;
     top: 0;
-    left: 50%;
+    left: 45%;
     overflow: scroll;
-    width: 50%;
+    width: 55%;
     height: 100%;
     background: #222;
     img {

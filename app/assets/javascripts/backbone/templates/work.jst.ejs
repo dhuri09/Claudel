@@ -1,19 +1,20 @@
 <div class="cover"></div>
 <div id="popover-work">
-  <div class="work-nav">
-    <img class="work-thumb" src="<%= thumbnail %>"/>
-    <a class="close">Close</a>
-  </div>
   <div class="work-container">
-    <div class="work-header">
-      <h1 class="name"><%= name %></h1>
-    </div>
-    <div class="details">
-      <div class="type"><%= type.name %></div>
-      <div class="domain"><%= domain.name %></div>
-      <div class="time-period"><%= time_period.name %></div>
-      <div class="description"><%= description %></div>
-    </div>  
+    <table>
+      <tr>
+        <td class="left"><img class="work-thumb" src="<%= thumbnail %>"/></td>
+        <td class="name"><%= name %></td>
+      </tr>
+      <tr>
+        <td class="left">
+          <div class="detail"><%= type.name %></div>
+          <div class="detail"><%= domain.name %></div>
+          <div class="detail"><%= time_period.name %></div>
+        </td>
+        <td><div class="description"><%= description %></div></td>
+      </tr>
+    </table>
   </div>
   <div class="work-images"></div>
 </div>
