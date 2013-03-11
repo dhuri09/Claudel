@@ -241,9 +241,14 @@ body {
       height: 100%;
       display: block;
       margin: auto;
+      opacity: 0;
+      @include transition(opacity 0.5s);
       &.heighted {
         height: auto;
         width: 100%;
+      }
+      &.loaded {
+        opacity: 1;
       }
     }
     .message {
