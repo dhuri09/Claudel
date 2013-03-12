@@ -237,6 +237,7 @@ body {
       display: block;
       margin: auto;
       @include transition(opacity 0.5s);
+      opacity: 0;
       &.heighted {
         height: auto;
         width: 100%;
