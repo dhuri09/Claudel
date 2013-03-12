@@ -12,6 +12,7 @@ class Claudel.Routers.WorksRouter extends Backbone.Router
     "domain" : "domain"
     "random" : "random"
     "works/:id" : "work"
+    "about" : "about"
     ".*" : "random"
   
   hidePopover: ->
@@ -47,4 +48,6 @@ class Claudel.Routers.WorksRouter extends Backbone.Router
   work: (id) ->
     work = @works.get(id)
     view = new Claudel.Views.Show(work, @currentSort)
-    #@view.render(@currentSort)
+  
+  about: ->
+    view = new Claudel.Views.About(@currentSort)
