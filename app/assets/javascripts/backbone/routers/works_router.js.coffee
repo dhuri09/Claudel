@@ -3,6 +3,16 @@ class Claudel.Routers.WorksRouter extends Backbone.Router
   initialize: (options) ->
     @works = new Claudel.Collections.Works
     @works.add(options.works.models)
+    #Seed Time Periods
+    @timePeriods = new Claudel.Collections.TimePeriods
+    @timePeriods.add(options.time_periods)
+    #Seed Types
+    @types = new Claudel.Collections.Types
+    @types.add(options.types)
+    #Seed Domains
+    @domains = new Claudel.Collections.Domains
+    @domains.add(options.domains)
+    #Set default sort to random
     @currentSort = 'random'
     @view = new Claudel.Views.Index(@works)
       
@@ -21,24 +31,18 @@ class Claudel.Routers.WorksRouter extends Backbone.Router
     
   time: ->
     @hidePopover()
-    timePeriods = new Claudel.Collections.TimePeriods
-    timePeriods.fetch success: (timePeriods) =>
-      @currentSort = 'time'
-      @view.render(@currentSort, timePeriods)
+    @currentSort = 'time'
+    @view.render(@currentSort, @timePeriods)
   
   type: ->
     @hidePopover()
-    types = new Claudel.Collections.Types
-    types.fetch success: (types) =>
-      @currentSort = 'type'
-      @view.render(@currentSort, types)
+    @currentSort = 'type'
+    @view.render(@currentSort, @types)
     
   domain: ->
     @hidePopover()
-    domains = new Claudel.Collections.Domains
-    domains.fetch success: (domains) =>
-      @currentSort = 'domain'
-      @view.render(@currentSort, domains)
+    @currentSort = 'domain'
+    @view.render(@currentSort, @domains)
   
   random: ->
     @hidePopover()

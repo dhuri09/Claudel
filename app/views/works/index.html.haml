@@ -5,7 +5,7 @@
     works.url = '/works';
     works.fetch({
       success: function(works) {
-        window.router = new Claudel.Routers.WorksRouter({works: works});
+        window.router = new Claudel.Routers.WorksRouter({works: works, time_periods: #{@time_periods.to_json.html_safe}, types: #{@types.to_json.html_safe}, domains: #{@domains.to_json.html_safe}});
         Backbone.history.start();
       }
     });

@@ -14,6 +14,9 @@ class WorksController < ApplicationController
   
   def index
     @works = Work.all
+    @time_periods = TimePeriod.all
+    @types = Type.all
+    @domains = Domain.all
     respond_to do |format|
       format.html
       format.json { render json: @works.as_json }
