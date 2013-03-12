@@ -29,13 +29,14 @@ class Claudel.Views.Show extends Backbone.View
         maxHeight = $(".work-images").height()
         height = $(".work-images img").height()
         $(".work-images img").css("margin-top", (maxHeight - height)/2)
+      $(".work-images").removeClass "loading"
       $(".work-images img").addClass "loaded"
     )
     
   addImages: =>
     images = @model.get('images')
     if _.isEmpty(images)
-      $(".work-images").append('<div class="message">No Images...</div>')
+      $(".work-images").removeClass("loading").append('<div class="message">No Images...</div>')
     else
       @appendImage(0)
   

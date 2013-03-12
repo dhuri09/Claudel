@@ -249,11 +249,16 @@ body {
     border: 1px solid black;
     vertical-align: middle;
     width: 55%;
+    @include transition(background 0.5s);
+    &.loading {
+      background-image: url("/assets/ajax-loader.gif");
+      background-position: center;
+      background-repeat: no-repeat;
+    }
     img {
       height: 100%;
       display: block;
       margin: auto;
-      opacity: 0;
       @include transition(opacity 0.5s);
       &.heighted {
         height: auto;
