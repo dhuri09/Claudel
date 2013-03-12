@@ -4,7 +4,7 @@ class TypesController < ApplicationController
 
   def require_login
     unless logged_in?
-      redirect_to '/home' # halts request cycle
+      redirect_to '/' # halts request cycle
     end
   end
  

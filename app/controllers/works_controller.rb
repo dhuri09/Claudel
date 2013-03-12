@@ -1,10 +1,10 @@
 class WorksController < ApplicationController
   
-  before_filter :require_login
+  before_filter :require_login, :except => ["index", "images"]
 
   def require_login
     unless logged_in?
-      redirect_to '/home' # halts request cycle
+      redirect_to '/' # halts request cycle
     end
   end
  
