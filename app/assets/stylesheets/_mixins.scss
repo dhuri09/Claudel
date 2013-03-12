@@ -1,3 +1,35 @@
+//Fonts
+@font-face { font-family: GravurCondensed-Black; src: url('/assets/GravurCondensed-Black.otf'); } 
+@font-face { font-family: GravurCondensed-Bold; src: url('/assets/GravurCondensed-Bold.otf'); }
+@font-face { font-family: GravurCondensed-Light; src: url('/assets/GravurCondensed-Light.otf'); }
+@font-face { font-family: GravurCondensed-Regular; src: url('/assets/GravurCondensed-Regular.otf'); } 
+@font-face { font-family: GravurCondensed-Thin; src: url('/assets/GravurCondensed-Thin.otf'); }
+
+@mixin GC-Black {
+  font-family: GravurCondensed-Black, Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: bolder;
+}
+
+@mixin GC-Bold {
+  font-family: GravurCondensed-Bold, Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: bolder;
+}
+
+@mixin GC-Light {
+  font-family: GravurCondensed-Light, Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: lighter;
+}
+
+@mixin GC-Regular {
+  font-family: GravurCondensed-Regular, Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: normal;
+}
+
+@mixin GC-Thin {
+  font-family: GravurCondensed-Thin, Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: normal;
+}
+
 @mixin transition($x) {  transition: #{$x};
   -moz-transition: #{$x};
   -webkit-transition: #{$x};
