@@ -14,7 +14,7 @@ class WorksController < ApplicationController
   
   def index
     @works = Work.all
-    @time_periods = TimePeriod.all
+    @time_periods = TimePeriod.all.sort_by { |time| time.season }
     @types = Type.all
     @domains = Domain.all
     respond_to do |format|
