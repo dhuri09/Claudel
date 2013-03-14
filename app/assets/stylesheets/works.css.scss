@@ -39,6 +39,7 @@ body {
       margin-left: 10px;
       text-decoration: none;
       @include transition(0.2s);
+      font-size: 21px;
       padding-bottom: 2px;
       color: #333;
       &:hover, &.active {
@@ -70,6 +71,10 @@ body {
     background: white;
     height: 100%;
     position: relative;
+  }
+  #domain, #type, #time {
+    @include GC-Light;
+    font-size: 18px;
   }
 }
 
@@ -104,24 +109,6 @@ body {
   width: 100%;
 }
 
-.time_period, .domain, .type {
-  border: 0px;
-  .time_period-name, .domain-name, .type-name {
-    margin: 0px;
-    padding: 0px;
-    vertical-align: middle;
-    border-right: 3px solid grey;
-    color: grey;
-    height: 74px;
-    padding-right: 10px;
-    @include transition(0.2s);
-    text-align: right;
-  }
-  .time_period-works, .domain-works, .type-works {
-    padding-left: 15px;
-  }
-}
-
 //Domain
 #domain-key {
   height: 100%;
@@ -130,18 +117,6 @@ body {
 //Type
 #type-key {
   height: 100%;
-}
-
-//Random
-.random {
-  img {
-    width: 60px;
-  }
-  position: absolute;
-  top: 50%;
-  left: 470px;
-  margin-top: -30px;
-  @include transition(0.5s);
 }
 
 //Popover
@@ -204,14 +179,17 @@ body {
     .detail {
       font-size: 13px;
       line-height: 17px;
+      @include GC-Regular;
     }
     .description {
+      @include GC-Light;
       font-size: 13px;
       line-height: 17px;
     }
     .name {
       vertical-align: bottom;
       font-size: 25px;
+      @include GC-Light;
       line-height: 25px;
       padding-bottom: 20px;
     }
@@ -263,4 +241,10 @@ body {
   position: absolute;
   border: 1px solid black;
   padding: 20px;
+  h1 {
+    @include GC-Regular;
+  }
+  p {
+    @include GC-Light;
+  }
 }
