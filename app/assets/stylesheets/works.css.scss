@@ -233,6 +233,31 @@ body {
   }
 }
 
+// Arrows
+#right-arrow, #left-arrow {
+  position: absolute;
+  height: 34px;
+  width: 20px;
+  top: 50%;
+  margin-top: -17px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  opacity: 0.7;
+  @include transition(0.2s);
+  &:hover {
+    opacity: 1;
+  }
+}
+#right-arrow {
+  right: 5px;
+  background-image: url("/assets/right.png");
+}
+#left-arrow {
+  left: 5px;
+  background-image: url("/assets/left.png");
+}
+
 //About Page
 #about-page {
   @include calc(width, 99%, 40px);

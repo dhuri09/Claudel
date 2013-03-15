@@ -21,7 +21,7 @@ class Claudel.Views.Show extends Backbone.View
   
   appendImage: (images, index) ->
     $(".work-images").html('<img data-num="' + index + '" src=' + images[index].url + ' />')
-    $(".work-images img").on("load", ->
+    $(".work-images img").on("load", =>
       maxWidth = $(".work-images").width()
       width = $(".work-images img").width()
       if width > maxWidth
@@ -31,7 +31,13 @@ class Claudel.Views.Show extends Backbone.View
         $(".work-images img").css("margin-top", (maxHeight - height)/2)
       $(".work-images").removeClass "loading"
       $(".work-images img").addClass "loaded"
+      @addArrows()
     )
+  
+  addArrows: ->
+    length = @model.get('images').length
+    unless length <= 1
+      $(".work-images").append("<div id='left-arrow'></div><div id='right-arrow'></div>")
     
   addImages: =>
     images = @model.get('images')
@@ -68,6 +74,8 @@ class Claudel.Views.Show extends Backbone.View
   
   events:
     "click .cover" : "close"
+    "click #right-arrow" : "nextImage"
+    "click #left-arrow" : "previousImage"
   
   close: ->
     window.location = "#" + @sort
