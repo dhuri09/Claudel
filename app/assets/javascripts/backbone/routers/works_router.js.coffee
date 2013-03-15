@@ -15,6 +15,7 @@ class Claudel.Routers.WorksRouter extends Backbone.Router
     #Set default sort to random
     @currentSort = 'random'
     @view = new Claudel.Views.Index(@works)
+    @show = new Claudel.Views.Show
       
   routes:
     "time" : "time"
@@ -51,7 +52,7 @@ class Claudel.Routers.WorksRouter extends Backbone.Router
   
   work: (id) ->
     work = @works.get(id)
-    view = new Claudel.Views.Show(work, @currentSort)
+    @show.render(work, @currentSort)
   
   about: ->
     view = new Claudel.Views.About(@currentSort)

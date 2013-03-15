@@ -6,11 +6,7 @@ class Claudel.Views.Show extends Backbone.View
   
   el: '#popover'
     
-  initialize: (work, sort) ->
-    @model = work
-    @sort = sort
-    @render()
-    $('body').keyup(@key)
+  initialize: ->
   
   showPopover: ->
     $("#popover").removeClass "hidden"
@@ -19,8 +15,8 @@ class Claudel.Views.Show extends Backbone.View
     @showPopover()
     $('.close').attr("href", "#" + @sort)
   
-  appendImage: (index) =>
-    $(".work-images").html('<img data-num="' + index + '" src=' + @model.get('images')[index].url + ' />')
+  appendImage: (images, index) ->
+    $(".work-images").html('<img data-num="' + index + '" src=' + images[index].url + ' />')
     $(".work-images img").on("load", ->
       maxWidth = $(".work-images").width()
       width = $(".work-images img").width()
@@ -38,27 +34,32 @@ class Claudel.Views.Show extends Backbone.View
     if _.isEmpty(images)
       $(".work-images").removeClass("loading").append('<div class="message">No Images...</div>')
     else
-      @appendImage(0)
+      @appendImage(images, 0)
   
   nextImage: =>
+    images = @model.get('images')
     i = $(".work-images img").data("num")
     length = @model.get('images').length
     unless length <= 1
       if (i+1) == length
-        @appendImage(0)
+        @appendImage(images, 0)
       else
-        @appendImage(i+1)
+        @appendImage(images, i+1)
   
   previousImage: =>
+    images = @model.get('images')
     i = $(".work-images img").data("num")
     length = @model.get('images').length
     unless length <= 1
       if i == 0
-        @appendImage((length-1))
+        @appendImage(images, (length-1))
       else
-        @appendImage(i-1)
+        @appendImage(images, i-1)
             
-  render: ->
+  render: (work, sort) ->
+    @model = work
+    @sort = sort
+    $('body').keyup(@key)
     $(@el).html(@template( @model.toJSON() ))
     @setLinks()
     @model.fetchImages().then @addImages
