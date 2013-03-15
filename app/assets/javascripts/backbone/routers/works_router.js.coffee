@@ -52,7 +52,7 @@ class Claudel.Routers.WorksRouter extends Backbone.Router
   
   work: (id) ->
     work = @works.get(id)
-    @show.render(work, @currentSort)
+    @show.reset(work, @currentSort)
   
   about: ->
     view = new Claudel.Views.About(@currentSort)

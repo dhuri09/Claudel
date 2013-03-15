@@ -6,7 +6,11 @@ class Claudel.Views.Show extends Backbone.View
   
   el: '#popover'
     
-  initialize: ->
+  reset: (work, sort) ->
+    $('body').on("keyup", @key)
+    @model = work
+    @sort = sort
+    @render()
   
   showPopover: ->
     $("#popover").removeClass "hidden"
@@ -38,9 +42,9 @@ class Claudel.Views.Show extends Backbone.View
   
   nextImage: =>
     images = @model.get('images')
-    i = $(".work-images img").data("num")
     length = @model.get('images').length
     unless length <= 1
+      i = $(".work-images img").data("num")
       if (i+1) == length
         @appendImage(images, 0)
       else
@@ -48,18 +52,15 @@ class Claudel.Views.Show extends Backbone.View
   
   previousImage: =>
     images = @model.get('images')
-    i = $(".work-images img").data("num")
     length = @model.get('images').length
     unless length <= 1
+      i = $(".work-images img").data("num")
       if i == 0
         @appendImage(images, (length-1))
       else
         @appendImage(images, i-1)
             
-  render: (work, sort) ->
-    @model = work
-    @sort = sort
-    $('body').keyup(@key)
+  render: ->
     $(@el).html(@template( @model.toJSON() ))
     @setLinks()
     @model.fetchImages().then @addImages
@@ -70,10 +71,11 @@ class Claudel.Views.Show extends Backbone.View
   
   close: ->
     window.location = "#" + @sort
+    $('body').off("keyup", @key)
   
   key: (event) =>
     if event.keyCode == 27
-      window.location = "#" + @sort
+      @close()
     else if event.keyCode == 39
       @nextImage()
     else if event.keyCode == 37
