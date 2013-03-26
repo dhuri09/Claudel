@@ -1,0 +1,25 @@
+.admin
+  =link_to "Works Index", "/admin"
+  =link_to "Types", "/admin/types"
+  =link_to "Domains", "/admin/domains"
+  =link_to "Time Periods", "/admin/time_periods"
+  %h1 Time Periods
+  =link_to "New Time Period", "/time_periods/new"
+  %table
+    %tbody
+      %tr
+        %th
+        %th Name
+        %th Works
+        %th
+        %th
+      -@time_periods.each do |tp|
+        %tr
+          %td= tp.name
+          %td= tp.works.count
+          %td= link_to "Edit", "/time_periods/#{tp.id}/edit"
+          %td
+            -if tp.works.count > 0
+              = "Cannot delete with works"
+            -else
+              = link_to 'Delete', tp, :method => :delete, :confirm => "Are you sure you want to delete this time periods?"

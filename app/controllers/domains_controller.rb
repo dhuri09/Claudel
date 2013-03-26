@@ -17,6 +17,27 @@ class DomainsController < ApplicationController
     render json: @domains
   end
   
+  def edit
+    @domain = Domain.find(params[:id])
+  end
+  
+  def update
+    @domain = Domain.find(params[:id])
+    respond_to do |format|
+      if @domain.update_attributes(params[:domain])
+        format.html { redirect_to "/admin/domains" }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @domain.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  def admin
+    @domains = Domain.all
+  end
+  
   def new
     @domain = Domain.new
   end
@@ -27,4 +48,11 @@ class DomainsController < ApplicationController
       redirect_to "/admin"
     end
   end
+  
+  def destroy
+    @domain = Domain.find(params[:id])
+    @domain.destroy
+    redirect_to "/admin/domains"
+  end
+  
 end

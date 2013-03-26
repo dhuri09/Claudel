@@ -272,4 +272,7 @@ body {
   p {
     @include GC-Light;
   }
+  a {
+    color: black;
+  }
 }

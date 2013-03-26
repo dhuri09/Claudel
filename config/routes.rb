@@ -4,6 +4,9 @@ Claudel::Application.routes.draw do
   
   root :to => "works#index"
   match "/admin" => "users#admin"
+  match "/admin/domains" => "domains#admin"
+  match "/admin/types" => "types#admin"
+  match "/admin/time_periods" => "time_periods#admin"
   match "/works/:id/images" => "works#images"
   match "/works/:id/edit/images" => "works#edit_images"
   match "/home" => "users#home"

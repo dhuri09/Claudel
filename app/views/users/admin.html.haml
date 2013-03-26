@@ -1,9 +1,10 @@
 .admin
-  =link_to "New Work", "works/new"
-  =link_to "New Type", "types/new"
-  =link_to "New Domain", "domains/new"
-  =link_to "New Time Period", "time_periods/new"
+  =link_to "Works Index", "/admin"
+  =link_to "Types", "/admin/types"
+  =link_to "Domains", "/admin/domains"
+  =link_to "Time Periods", "/admin/time_periods"
   %h1 Works
+  =link_to "New Work", "/works/new"
   %table
     %tbody
       %tr
@@ -20,9 +21,9 @@
           %td= image_tag work.thumbnail.url(:small)
           %td= work.name
           %td= work.description
-          %td= work.type.name
-          %td= work.domain.name
-          %td= work.time_period.name
+          %td= work.type ? work.type.name : "Unfound Type"
+          %td= work.domain ? work.domain.name : "Unknown Domain"
+          %td= work.time_period ? work.time_period.name : "Unknown Time Period"
           %td= link_to "#{work.images.count} Images", "/works/#{work.id}/edit/images"
           %td= link_to 'Edit', "/works/#{work.id}/edit"
           

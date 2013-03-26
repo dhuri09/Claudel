@@ -1,0 +1,25 @@
+.admin
+  =link_to "Works Index", "/admin"
+  =link_to "Types", "/admin/types"
+  =link_to "Domains", "/admin/domains"
+  =link_to "Time Periods", "/admin/time_periods"
+  %h1 Domains
+  =link_to "New Domain", "/domains/new"
+  %table
+    %tbody
+      %tr
+        %th
+        %th Name
+        %th Works
+        %th
+        %th
+      -@domains.each do |domain|
+        %tr
+          %td= domain.name
+          %td= domain.works.count
+          %td= link_to "Edit", "/domains/#{domain.id}/edit"
+          %td
+            -if domain.works.count > 0
+              = "Cannot delete with works"
+            -else
+              = link_to 'Delete', tp, :method => :delete, :confirm => "Are you sure you want to delete this domain?"

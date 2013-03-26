@@ -18,6 +18,27 @@ class TimePeriodsController < ApplicationController
     render json: @time_periods
   end
   
+  def admin
+    @time_periods = TimePeriod.all
+  end
+  
+  def edit
+    @time_period = TimePeriod.find(params[:id])
+  end
+  
+  def update
+    @time_period = TimePeriod.find(params[:id])
+    respond_to do |format|
+      if @time_period.update_attributes(params[:time_period])
+        format.html { redirect_to "/admin/time_periods" }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @time_period.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
   def new
     @time_period = TimePeriod.new
   end

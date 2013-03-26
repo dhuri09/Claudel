@@ -1,6 +1,8 @@
 class TimePeriod < ActiveRecord::Base
   attr_accessible :name
   
+  has_many :works
+  
   #Lets you sort by season in chronological order
   def season
     season = self.name.split[0]
